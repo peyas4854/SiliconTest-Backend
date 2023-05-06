@@ -31,4 +31,8 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('products', ProductController::class);
 
     Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart/store', [CartController::class, 'store']);
+    Route::post('/cart/change/quantity', [CartController::class, 'changeQuantity']);
+    Route::post('/checkout', [CartController::class, 'checkout']);
+
 });
