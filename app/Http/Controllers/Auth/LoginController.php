@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -49,10 +50,17 @@ class LoginController extends Controller
             return response()->json([
                 'user' => auth()->user(),
                 'token' => $token,
+                'expires_at'   => Carbon::now()->addWeeks(1)->toDateTimeString(),
                 'message'=>'Login Successfully'
             ], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
+    }
+    public function logout(Request $request)
+    {
+
+        $request->user()->tokens()->delete();
+        return response()->json(['status' => 'success', 'message' => 'Successfully logout',], 200);
     }
 }

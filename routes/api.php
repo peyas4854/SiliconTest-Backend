@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//public routes
 Route::post('register', [LoginController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
+Route::get('/frontend/products', [ProductController::class, 'index']);
+Route::get('/frontend/products', [ProductController::class, 'index']);
+// authenticated routes
 Route::middleware('auth:api')->group(function () {
-    Route::apiResource('product', ProductController::class);
+    Route::get('/user', function(Request $request){
+        return $request->user();
+    });
+    Route::post('/logout', [LoginController::class, 'logout']);
+    Route::apiResource('products', ProductController::class);
+
+    Route::get('/cart', [CartController::class, 'index']);
 });
