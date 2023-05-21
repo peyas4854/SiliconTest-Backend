@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// oauth2-google
 Route::get('/index', [\App\Http\Controllers\GoogleController::class,'index']);
 Route::get('/oauth/gmail/callback', [\App\Http\Controllers\GoogleController::class,'index']);
 Route::get('/refresh-token', [\App\Http\Controllers\GoogleController::class,'refreshToken']);
+Route::get('/send/mail', [\App\Http\Controllers\GoogleController::class,'sendMail']);
+//Provider
+//Route::get('/provider', [\App\Http\Controllers\ProviderController::class,'index']);
+//Route::get('/oauth/gmail/callback', [\App\Http\Controllers\ProviderController::class,'index']);
