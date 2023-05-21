@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/index', [\App\Http\Controllers\GoogleController::class,'index']);
+Route::get('/oauth/gmail/callback', [\App\Http\Controllers\GoogleController::class,'index']);
+Route::get('/refresh-token', [\App\Http\Controllers\GoogleController::class,'refreshToken']);
