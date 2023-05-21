@@ -130,6 +130,5 @@ class GoogleController extends Controller
 
         dd('send message',$message->getId());
 
-
     }
 }
