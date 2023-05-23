@@ -100,8 +100,8 @@ class GoogleController extends Controller
     {
         $sender = 'demo@gmail.com';
         $to = 'peyaschandra@gmail.com';
-        $subject= 'This email is sending via test application';
-        $messageText ='This is the another body.';
+        $subject = 'This email is sending via test application';
+        $messageText = 'This is the another body.';
         $client = new Google_Client();
         $client->setClientId('324022333218-20bjndidmt1fv8ro9t6kl6f873akkg1g.apps.googleusercontent.com');
         $client->setClientSecret('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');
@@ -122,13 +122,13 @@ class GoogleController extends Controller
         $rawMessage = strtr(base64_encode($rawMessageString), array('+' => '-', '/' => '_'));
         $email->setRaw($rawMessage);
 
-      // Send the email
+        // Send the email
         $message = $service->users_messages->send('me', $email);
 
-     // Output the message ID
+        // Output the message ID
         echo 'Message ID: ' . $message->getId();
 
-        dd('send message',$message->getId());
+        dd('send message', $message->getId());
 
     }
 }
